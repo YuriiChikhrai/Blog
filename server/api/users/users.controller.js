@@ -16,3 +16,11 @@ exports.registerUser = (req, res) => {
 exports.logInUser = (req, res) => {
     res.send({message: "login success"});
 };
+
+exports.logOutUser = (req, res) => {
+
+};
+
+exports.getUserById = (req, res) => {
+
+};

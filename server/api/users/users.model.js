@@ -52,4 +52,4 @@ UserSchema.statics = {
     }
 };
 
-module.exports = mongoose.model('UserModel', UserSchema);
+module.exports = mongoose.model('UsersModel', UserSchema);

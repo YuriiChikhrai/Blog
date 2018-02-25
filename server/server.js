@@ -50,7 +50,7 @@ app.use(session({
     })
 }));
 
-app.use("/", require('./router'));
+require('./router')(app);
 
 // error handler
 app.use(function(err, req, res, next) {
