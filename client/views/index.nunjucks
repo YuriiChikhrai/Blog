@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Express APP</title>
+</head>
+<body>
+    <h1>Hello, {{ user if user else "guest" }}</h1>
+    {{ '<a href="/users/logout">Logout</a>' if user else '<a href="/users/login">Login</a>' }}
+</body>
+</html>

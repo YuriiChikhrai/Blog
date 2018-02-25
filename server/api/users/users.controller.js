@@ -18,7 +18,10 @@ exports.logInUser = (req, res) => {
 };
 
 exports.logOutUser = (req, res) => {
-
+    req.session.destroy( err => {
+        if(err) console.error(err);
+        res.redirect('/');
+    });
 };
 
 exports.getUserById = (req, res) => {

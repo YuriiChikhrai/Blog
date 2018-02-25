@@ -23,7 +23,8 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 
 // Configure nunjucks template engine
-nunjucks.configure(path.join(__dirname, 'client', 'views'), {
+nunjucks.configure(path.join(__dirname, '..', 'client', 'views'), {
+    autoescape: false,
     express: app
 });
 
