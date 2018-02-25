@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const nunjucks = require('nunjucks');
 const path = require('path');
 const mongoose = require('mongoose');
+const { errors } = require('celebrate');
 
 const session = require('express-session');
 const MongoStore = require('express-sessions');
@@ -52,6 +53,9 @@ app.use(session({
 }));
 
 require('./router')(app);
+
+
+app.use(errors());
 
 // error handler
 app.use(function(err, req, res, next) {
