@@ -44,6 +44,9 @@ module.exports = (app) => {
     app.use('/', importModule("main"));
 
     // POSTS API
+    app.use('/comments', importModule("comments"));
+
+    // POSTS API
     app.use('/posts', importModule("posts"));
 
     // Users API
