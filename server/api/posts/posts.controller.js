@@ -4,13 +4,12 @@ const PostsModel = require('./posts.model');
 const path = require('path');
 
 exports.getPosts = (req, res) => {
-    // TODO: ДЗ - сделать пагинацию
-    // req.query / req.params ???
+
     PostsModel
         .find({show: true})
-        .sort({addedAt: -1})
-        .skip(0) // TODO: Not static
-        .limit(25) // TODO: Not static
+        .sort({[req.query.sortField]: req.query.sortValue})
+        .skip(req.query.limit * (req.query.page - 1))
+        .limit(req.query.limit)
         .populate([
             {
                 path: "addedBy",
