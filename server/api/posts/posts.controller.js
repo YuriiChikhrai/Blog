@@ -1,6 +1,7 @@
 "use strict";
 
 const PostsModel = require('./posts.model');
+const path = require('path');
 
 exports.getPosts = (req, res) => {
     // TODO: ДЗ - сделать пагинацию
@@ -45,4 +46,18 @@ exports.addNewPost = (req, res) => {
         if(err) return res.status(400).send(err.message || err);
         res.send(doc);
     })
+};
+
+exports.upload = (req, res) => {
+    res.render('upload.nunjucks');
+};
+
+exports.uploadImage = (req, res) => {
+    let sampleFile = req.files.image;
+
+    const pathFile = path.join(__dirname, '..', '..', '..', 'client', 'public', sampleFile.name);
+    sampleFile.mv(pathFile, (err) => {
+        if (err) return res.status(500).send(err);
+        res.send({message: 'File uploaded!'});
+    });
 };

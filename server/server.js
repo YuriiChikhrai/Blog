@@ -6,6 +6,7 @@ const nunjucks = require('nunjucks');
 const path = require('path');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const fileUpload = require('express-fileupload');
 
 const session = require('express-session');
 const MongoStore = require('express-sessions');
@@ -34,7 +35,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/public", express.static(path.join(__dirname, 'public')));
+const publicPath = path.join(__dirname, '..', 'client', 'public');
+app.use("/public", express.static(publicPath));
 
 // add cookie-session
 app.use(session({
@@ -52,8 +54,15 @@ app.use(session({
     })
 }));
 
-require('./router')(app);
+// File upload
+app.use(fileUpload({
+    limits: { fileSize: 5 * 1024 * 1024 },
+    safeFileNames: true,
+    preserveExtension: true,
+    abortOnLimit: true
+}));
 
+require('./router')(app);
 
 app.use(errors());
 

@@ -4,6 +4,14 @@ const path = require('path');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const UsersModel = require('./api/users/users.model');
+const authorization = require("express-rbac");
+
+
+const permissions = {
+    user: ['comment'],
+    moderator: ['addPost', 'edit', 'comment'],
+    admin: ['addPost', 'edit', 'comment', 'show', 'ban']
+};
 
 module.exports = (app) => {
 
@@ -35,6 +43,15 @@ module.exports = (app) => {
 
     app.use(passport.initialize());
     app.use(passport.session());
+
+    app.use(authorization.authorize({bindToProperty: "user"}, function(req, done) {
+        if(!req.isAuthenticated()) {
+            done(false);
+        } else {
+            const authData = {roles: [req.user.role], permissions: permissions[req.user.role]};
+            done(authData);
+        }
+    }));
 
     function importModule(name) {
         return require(path.join(__dirname, "api", name));
