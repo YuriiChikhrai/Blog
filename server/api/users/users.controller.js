@@ -24,6 +24,19 @@ exports.logOutUser = (req, res) => {
     });
 };
 
+exports.changeUserRole = (req, res) => {
+    UsersModel
+        .findByIdAndUpdate(req.params.id, {
+            $set: {
+                role: req.body.newRole
+            }
+        })
+        .exec( err => {
+            if(err) return res.status(400).send({message: err.message});
+            return res.send({message: "User role changed"});
+        })
+};
+
 exports.getUserById = (req, res) => {
 
 };

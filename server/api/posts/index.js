@@ -16,8 +16,8 @@ router.post('/', authorization.hasPermission('addPost'), _.partial(middle.checkV
 router.get('/upload', ctrl.upload);
 router.post('/upload', ctrl.uploadImage);
 
-// sendNewPost
-// updatePost
-// deletePost
+// TODO: updatePost (for moderator/admin)
+// TODO: disable post (for moderator/admin)
+// TODO: delete post (for moderator/admin)
 
 module.exports = router;
