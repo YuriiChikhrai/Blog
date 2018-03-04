@@ -18,5 +18,6 @@ module.exports = {
             sortField: Joi.string().valid('text', 'title', 'addedAt').default('addedAt'),
             sortValue: Joi.number().valid(-1, 1).default(-1)
         }
-    }
+    },
+
 };

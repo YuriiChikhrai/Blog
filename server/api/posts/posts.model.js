@@ -10,7 +10,7 @@ const PostsSchema = new Schema({
     addedBy: {type: Schema.ObjectId, ref: "UsersModel"},
     show: {type: Boolean, default: true},
     tags: [{type: String}],
-    comments: [{type: Schema.ObjectId, ref: "CommentsModel"}]
+    // comments: [{type: Schema.ObjectId, ref: "CommentsModel"}]
 }, {
     collection: "PostsCollection"
 });

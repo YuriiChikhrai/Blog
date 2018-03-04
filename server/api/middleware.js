@@ -1,6 +1,6 @@
 "use strict";
 
-const { celebrate } = require('celebrate');
+const { celebrate, Joi } = require('celebrate');
 const path = require('path');
 
 exports.isAuthorized = (req, res, next) => {
@@ -8,7 +8,19 @@ exports.isAuthorized = (req, res, next) => {
     else res.status(401).send("Not logged in");
 };
 
+const general = {
+    getById: {
+        params: {
+            id: Joi.string().alphanum().length(24).required()
+        }
+    }
+};
+
 exports.checkValidation = (modelPath, schemaName, req, res, next) => {
-    const schema = require(path.join(__dirname, modelPath, modelPath + ".validation.js"));
+    let schema;
+    if(modelPath !== "general") {
+        schema = require(path.join(__dirname, modelPath, modelPath + ".validation.js"));
+    } else schema = general;
+
     celebrate(schema[schemaName])(req, res, next);
 };

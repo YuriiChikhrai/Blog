@@ -8,7 +8,8 @@ const _ = require('lodash');
 const authorization = require('express-rbac');
 
 router.get('/', _.partial(middle.checkValidation, 'posts', 'getPosts'), ctrl.getPosts);
-// getPostById
+
+router.get('/:id', _.partial(middle.checkValidation, 'general', 'getById'), ctrl.getPostById);
 
 router.post('/', authorization.hasPermission('addPost'), _.partial(middle.checkValidation, 'posts', 'validateReceivedPost'), ctrl.addNewPost);
 

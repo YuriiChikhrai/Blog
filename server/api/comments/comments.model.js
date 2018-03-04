@@ -8,7 +8,9 @@ const CommentsSchema = new Schema({
     addedBy: {type: Schema.ObjectId, ref: "UsersModel"},
     show: {type: Boolean, default: true},
     text: {type: String},
-    rate: {type: Number, min: 1, max: 5, default: 3}
+    rate: {type: Number, min: 1, max: 5, default: 3},
+    postId: {type: Schema.ObjectId, ref: "PostsModel", index: 1},
+    parentId: {type: Schema.ObjectId, ref: "CommentsModel"}
 }, {
     collection: "CommentsCollection"
 });

@@ -8,9 +8,9 @@ const authorization = require("express-rbac");
 
 
 const permissions = {
-    user: ['comment'],
-    moderator: ['addPost', 'edit', 'comment'],
-    admin: ['addPost', 'edit', 'comment', 'show', 'ban']
+    user: ['addComment'],
+    moderator: ['addPost', 'edit', 'addComment'],
+    admin: ['addPost', 'edit', 'addComment', 'show', 'ban']
 };
 
 module.exports = (app) => {
