@@ -77,8 +77,28 @@ app.use(function(err, req, res, next) {
   res.status(400).send(err.message || err);
 });
 
+
+// Socket.io
+var server = require('http').Server(app);
+const io = require('socket.io')(server, {serveClient: true});
+
+io.on('connection', function (socket) {
+
+    // if (authorized) socket.join('all');
+
+    let req = socket.request;
+    console.log(req);
+
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function (data) {
+        console.log(data);
+    });
+});
+
+app.locals.io = io;
+
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log("Server start on port", PORT, "env", process.env.NODE_ENV);
 });
 

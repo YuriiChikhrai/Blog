@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Express APP</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
     <h1>Hello, {{ user if user else "guest" }}</h1>
@@ -31,6 +31,11 @@
                 })
             });
         });
+
+        let socket = io('http://localhost:8080');
+        socket.emit('my other event', {reason: "Hello from frontend"});
+        socket.on('news', console.log);
+
     </script>
 </body>
 </html>

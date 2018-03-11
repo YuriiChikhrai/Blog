@@ -4,6 +4,7 @@ const UsersModel = require('./users.model');
 
 exports.getLogin = (req, res) => {
     res.render('login.nunjucks');
+    req.app.locals.io.to('all').emit("news", "login");
 };
 
 exports.registerUser = (req, res) => {
