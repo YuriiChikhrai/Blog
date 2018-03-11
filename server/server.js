@@ -11,7 +11,7 @@ const fileUpload = require('express-fileupload');
 const session = require('express-session');
 const MongoStore = require('express-sessions');
 
-mongoose.connect('mongodb://localhost:27017/hillel');
+mongoose.connect('mongodb://test:test@ds211309.mlab.com:11309/blog');
 mongoose.set('debug', true);
 
 mongoose.connection.on('open', () => {
