@@ -3,7 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "apidoc": "apidoc -i ./server -o ./docs"
+  },
+  "apidoc": {
+    "name": "Blog on Hillel course",
+    "description": "Documentation generated for blog",
+    "title": "Blog on Hillel",
+    "url": "http://locahost:8080"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -22,5 +29,8 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "apidoc": "^0.17.6"
   }
 }

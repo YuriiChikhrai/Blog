@@ -10,7 +10,7 @@ const _ = require('lodash');
 /**
  * @api {post} /comments/:id Add comment to post
  * @apiName addCommentToPost
- * @apiVersion 1.1.0
+ * @apiVersion 1.0.0
  * @apiGroup Comments
  *
  * @apiParam {String{2..10000}} text Text of comment
@@ -24,6 +24,12 @@ const _ = require('lodash');
  *     HTTP/1.1 200 OK
  *     {
  *          "message": "Comment add successful"
+ *     }
+ *
+ * @apiSuccessExample {json} Test Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *          "message": "test response"
  *     }
  *
  * @apiError {String} message Error message
