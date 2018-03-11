@@ -81,3 +81,5 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log("Server start on port", PORT, "env", process.env.NODE_ENV);
 });
+
+module.exports = app;
